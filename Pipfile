@@ -10,6 +10,7 @@ django-heroku = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 django-debug-toolbar = "*"
+requests = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
