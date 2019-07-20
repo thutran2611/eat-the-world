@@ -2,6 +2,14 @@ from django.shortcuts import render
 from django import forms
 from . import utils
 
+#Views based on the template Reuben and Kyle are working on
+def index(request):
+#    if request.method == 'POST':
+#        form = CuisineForm(request.POST)
+    context = {}
+    return render(request,'pages/index.html',context)
+
+
 # Two example views. Change or delete as necessary.
 def home(request):
     #Get list of cuisines from database since no way to dynamically pull from spoonful API and no need since will change very rarely
@@ -53,4 +61,8 @@ def test_page(request):
     }
 
     return render(request, 'pages/home.html', context)
+
+
+
+
 
