@@ -21,6 +21,10 @@ def index(request):
     context = {}
     return render(request,'pages/index.html',context)
 
+def recipe(request):
+    context = {}
+    return render(request,'pages/recipe.html',context)
+
 
 # Two example views. Change or delete as necessary.
 def home(request):
