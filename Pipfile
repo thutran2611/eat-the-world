@@ -11,6 +11,7 @@ gunicorn = "*"
 psycopg2-binary = "*"
 django-debug-toolbar = "*"
 requests = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

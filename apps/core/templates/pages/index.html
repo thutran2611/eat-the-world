@@ -1,3 +1,5 @@
+{% load bootstrap4 %}
+
 <!doctype html>
 <html lang="en">
 
@@ -62,17 +64,32 @@
   <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Select a Cuisine
   </button>
+
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">American</a>
-    <a class="dropdown-item" href="#">Chinese</a>
-    <a class="dropdown-item" href="#">French</a>
-    <a class="dropdown-item" href="#">Italian</a>
-    <a class="dropdown-item" href="#">Japanese</a>
-    <a class="dropdown-item" href="#">Thai</a>
-    <a class="dropdown-item" href="#">Vietnamese</a>
+<!--    <a class="dropdown-item" href="#">{{ list_of_cuisines.as_p }}</a>-->
+<!--    <a class="dropdown-item" href="#">Chinese</a>-->
+<!--    <a class="dropdown-item" href="#">French</a>-->
+<!--    <a class="dropdown-item" href="#">Italian</a>-->
+<!--    <a class="dropdown-item" href="#">Japanese</a>-->
+<!--    <a class="dropdown-item" href="#">Thai</a>-->
+<!--    <a class="dropdown-item" href="#">Vietnamese</a>-->
+    <form action="." method="GET">
+
+        {% csrf_token %}
+        {% bootstrap_form list_of_cuisines %}
+
+    </form>
+<!--<p>{{ list_of_cuisines }}.</p>-->
+
+
     </div>
 </div>
 
+<hr>
+<h2>Random Recipe</h2>
+<p>{{ random_recipe }}</p>
+<br />
+<hr>
 <!-- End Dropdown for Cuisine Selection -->
 
 

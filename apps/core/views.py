@@ -18,7 +18,40 @@ class CuisineForm(forms.Form):
 def index(request):
 #    if request.method == 'POST':
 #        form = CuisineForm(request.POST)
-    context = {}
+    cuisine = None
+    selected_cuisine = None
+    rando = None
+    summary = None
+    details= None
+    
+    #Get list of cuisines from database since no way to dynamically pull from spoonful API and no need since will change very rarely
+    list_of_cuisines = CuisineForm()
+    
+    # TODO figure out how request will be coming in for a recipe
+    #Get 1 recipe if request includes a cuisine
+    if 'cuisine' in request.GET:
+        selected_cuisine_id = request.GET['cuisine']
+        selected_cuisine = Cuisine.objects.get(id=selected_cuisine_id)
+        
+        print('the selected cuisine is ->',selected_cuisine)
+    else:
+        print('no selected cuisine provided')
+
+    if selected_cuisine:    
+        rando = utils.get_recipe_by_cuisine(selected_cuisine)
+        rando_id = rando["results"][0]["id"]
+        print('rando recipe ID is ->',str(rando_id))
+        
+        summary = utils.get_recipe_summary(rando_id)
+        details = utils.get_recipe_details(rando_id)
+
+    context = {
+        'list_of_cuisines': list_of_cuisines,
+        'random_recipe': rando,
+        'recipe_summary': summary, 
+        'recipe_details': details,
+    }
+
     return render(request,'pages/index.html',context)
 
 def recipe(request):
