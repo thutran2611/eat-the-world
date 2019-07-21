@@ -86,3 +86,13 @@ def edit_profile(request):
     return render(request, 'accounts/edit_profile.html', context)
 
 
+#temporary view functions for our two templates
+def signup2(request):
+    context =  {}
+    return render(request, 'accounts/signup2.html', context)
+
+def account(request):
+    context =  {}
+    return render(request, 'accounts/user_account.html', context)
+
+

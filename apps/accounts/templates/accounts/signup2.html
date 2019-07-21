@@ -1,0 +1,82 @@
+{% extends "base2.html" %}
+
+
+{% block content %}
+    <header class="bg-gradient" id="home">
+        <div class="container mt-5">
+            <h1>Sign-up</h1>
+            <p class="tagline">Get started with your free account</p>
+            <br>
+                        <br>
+        </div>
+
+    </header>
+
+<div class="section">
+        <div class="container">
+            <div class="section-title">
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+    <p>
+
+
+ <!-- would be cool to enable SSO with FB, TWitter, etc -->       
+        <a href="" class="btn btn-block btn-twitter"> <span class="ti-twitter-alt"></span>   Login via Twitter</a>
+        <a href="" class="btn btn-block btn-facebook"><span class="ti-facebook"></span></i>   Login via facebook</a>
+    </p>
+    <p class="divider-text">
+        <span class="bg-light">OR</span>
+    </p>
+ <!-- END would be cool to enable SSO with FB, TWitter, etc --> 
+
+
+
+<!-- signup form -->
+    <form>
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text ti-user gradient-fill ti-2x mr-2"> </span>
+         </div>
+        <input name="" class="form-control" placeholder="Name" type="text">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text ti-email gradient-fill ti-2x mr-2"></span>
+         </div>
+        <input name="" class="form-control" placeholder="Email address" type="email">
+    </div> <!-- form-group// -->
+    
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> </span>
+        </div>
+
+    </div> <!-- form-group end.// -->
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text ti-lock gradient-fill ti-2x mr-2 "></i> </span>
+        </div>
+        <input class="form-control" placeholder="Create password" type="password">
+    </div> <!-- form-group// -->
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text ti-lock gradient-fill ti-2x mr-2"> </span>
+        </div>
+        <input class="form-control" placeholder="Repeat password" type="password">
+    </div> <!-- form-group// -->                                      
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+</form>
+</article>
+</div> <!-- card.// -->
+
+<!-- END signup form -->
+
+</div>
+</div>
+</div>
+
+{% endblock content %}
