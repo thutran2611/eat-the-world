@@ -6,5 +6,5 @@ urlpatterns = [
     path('test', views.test_page, name='home'),
     path('about/', views.about, name='about'),
     path('',views.index, name='index'),
-    path('recipe/',views.recipe, name='recipe'),
+    path('recipe/',views.recipe, name='recipe'), #'recipe/<id:#>/<slug:slug>'   
 ]
