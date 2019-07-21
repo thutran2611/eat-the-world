@@ -10,7 +10,8 @@ def main():
     else:
         # Not being run on Heroku, use local as default settings
         default_settings_file = 'eat_the_World.config.local'
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', default_settings_file)
+    
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', default_settings_file)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
