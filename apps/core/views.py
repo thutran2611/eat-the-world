@@ -18,12 +18,14 @@ class CuisineForm(forms.Form):
 def index(request):
 #    if request.method == 'POST':
 #        form = CuisineForm(request.POST)
-    context = {}
-    return render(request,'pages/index.html',context)
+    context = {
+    }
+    return render(request, 'pages/index.html',context)
 
 def recipe(request):
-    context = {}
-    return render(request,'pages/recipe.html',context)
+    context = {
+    }
+    return render(request, 'pages/recipe.html',context)
 
 
 # Two example views. Change or delete as necessary.
