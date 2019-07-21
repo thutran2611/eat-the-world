@@ -13,4 +13,5 @@ urlpatterns = [
     #adding temporary paths for our two templates
     path('signup2/', views.signup2, name ='signup2'),
     path('account/', views.account, name ='account'),
+    path('login2/', views.log_in2, name='login2'),
 ]

@@ -95,4 +95,18 @@ def account(request):
     context =  {}
     return render(request, 'accounts/user_account.html', context)
 
+def log_in2(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            return redirect('home')
+    else:
+        form = AuthenticationForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'accounts/login2.html', context)
+
 
