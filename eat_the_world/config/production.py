@@ -1,7 +1,7 @@
 # Settings that are unique to production go here
 from .base import *  # noqa
 
-DEBUG = False
+DEBUG = True
 
 # Configure Django App for Heroku.
 import django_heroku
