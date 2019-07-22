@@ -6,10 +6,10 @@ import sys
 def main():
     if 'DYNO' in os.environ:
         # Is being run on Heroku, use production as default settings
-        default_settings_file = 'eat_the_World.config.production'
+        default_settings_file = 'eat_the_world.config.production'
     else:
         # Not being run on Heroku, use local as default settings
-        default_settings_file = 'eat_the_World.config.local'
+        default_settings_file = 'eat_the_world.config.local'
     
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', default_settings_file)
     try:

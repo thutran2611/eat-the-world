@@ -1,5 +1,5 @@
 """
-ASGI config for eat_the_World project.
+ASGI config for eat_the_world project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eat_the_World.config.production')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eat_the_world.config.production')
 
 application = get_asgi_application()
