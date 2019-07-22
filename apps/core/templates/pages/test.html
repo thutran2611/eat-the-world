@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="jumbotron">
-  <h1 class="display-4">
+  <h1 class="display-4"> TEST PAGE FOR -> EAT THE WORLD
 
 <!-- example of pulling specific data from api output -->	
 {% for recipe in random_recipe.results %}
@@ -30,7 +30,7 @@
 </div>
 
 <h2>List of Cuisines</h2>
-    <form action="." method="GET">
+    <form action="test" method="GET">
         {% csrf_token %}
         {{ list_of_cuisines.as_p }}
         <button class="btn btn-primary">Get a Recipe!</button>
@@ -42,7 +42,7 @@
 <p>{{ random_recipe }}</p>
 <br />
 <hr>
-<h2>Recipe Summary</h2>
+<h2>Recipe Summary (NOT USING)</h2>
 <p>{{ recipe_summary }}</p>
 <br />
 <hr>

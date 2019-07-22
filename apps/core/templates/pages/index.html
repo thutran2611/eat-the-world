@@ -28,13 +28,15 @@
     Select a Cuisine
   </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">American</a>
-    <a class="dropdown-item" href="#">Chinese</a>
-    <a class="dropdown-item" href="#">French</a>
-    <a class="dropdown-item" href="#">Italian</a>
-    <a class="dropdown-item" href="#">Japanese</a>
-    <a class="dropdown-item" href="#">Thai</a>
-    <a class="dropdown-item" href="#">Vietnamese</a>
+    {% for cuisine in list_of_cuisines %}
+    <a class="dropdown-item" href="/{{ cuisine.id }}">{{ cuisine.name|title }}</a>
+    {% endfor %}
+<!--    <a class="dropdown-item" href="#">Chinese</a>-->
+<!--    <a class="dropdown-item" href="#">French</a>-->
+<!--    <a class="dropdown-item" href="#">Italian</a>-->
+<!--    <a class="dropdown-item" href="#">Japanese</a>-->
+<!--    <a class="dropdown-item" href="#">Thai</a>-->
+<!--    <a class="dropdown-item" href="#">Vietnamese</a>-->
     </div>
 </div>
 
@@ -44,70 +46,72 @@
 <!-- Listing out Cuisine Selections -->
 
 <div class="row my-5">
-            <ul class="nav nav-justified" >
+            <ul class="nav nav-justified text-nowrap" >
+            {% for cuisine in list_of_cuisines %}
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#">American</a>
+                    <a class="nav-link active" href="/{{ cuisine.id }}">{{ cuisine.name|title }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">French</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#">American</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">French</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#">American</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">French</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>
-                </li>
+            {% endfor %}
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">French</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" data-toggle="tab" href="#">American</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">French</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" data-toggle="tab" href="#">American</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">French</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>-->
+<!--                </li>-->
             </ul>
               
 </div>
@@ -121,7 +125,15 @@
     </div>
     <!-- // end .section -->
 
+<div>
+    <p>Recipe ID -> {{ recipe.results.0.id }}</p>
+	<p>Recipe Title -> {{ recipe.results.0.title }}</p>
+	<p>Recipe Image -> <img src="{{ recipe.results.0.image }}"></p>
+</div>
 
+    <a href="/recipe/{{ recipe.results.0.id }}" class="btn btn-primary btn-lg" role="button">
+        Get Recipe Details
+    </a>
 
 <!-- This section was part of the template and looked kinda cool but we can delete if unneeded -->
 

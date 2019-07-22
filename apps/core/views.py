@@ -15,22 +15,58 @@ class CuisineForm(forms.Form):
     cuisine = forms.ModelChoiceField(queryset=Cuisine.objects.order_by('name'))
 
 #Views based on the template Reuben and Kyle are working on
-def index(request):
-#    if request.method == 'POST':
-#        form = CuisineForm(request.POST)
+def index(request, id=0):
+    
+       
+    #list of cuisines
+    list_of_cuisines = Cuisine.objects.order_by('name')
+    selected_cuisine = None
+    rando_py = None
+    
+    #if a cuisine is provided get 
+    if id > 0:
+        selected_cuisine = Cuisine.objects.get(id=id)
+        
+        print('the selected cuisine is ->',selected_cuisine)
+        
+        rando = utils.get_recipe_by_cuisine(selected_cuisine)
+        
+        print('get_recipe_by_cuisine',rando)
+        #convert to python
+        rando_py = rando.json()
+        print('rando_py',rando_py)
+        
+    else:
+        print('no selected cuisine provided')
+
+
     context = {
+        'list_of_cuisines': list_of_cuisines,
+        'selected_cuisine': selected_cuisine,
+        'recipe': rando_py,
+        
     }
     return render(request, 'pages/index.html',context)
 
-def recipe(request):
+def recipe(request, id=0):
+    details_py = None
+    
+    if id > 0:
+        #get recipe details
+        details = utils.get_recipe_details(id)
+        
+        details_py = details.json()
+    
     context = {
+        "recipe": details_py,
     }
+
     return render(request, 'pages/recipe.html',context)
 
 
-# Two example views. Change or delete as necessary.
-def home(request):
-    print('home request')
+# Views for test page for trying out stuff, including test api calls returning python text
+def test(request):
+    print('test request')
     
     cuisine = None
     selected_cuisine = None
@@ -53,20 +89,32 @@ def home(request):
 
     if selected_cuisine:    
         rando = utils.get_recipe_by_cuisine(selected_cuisine)
-        rando_id = rando["results"][0]["id"]
+        
+        #convert to python
+        rando_py = rando.json()
+        
+        #pull recipe ID out of the random recipe result
+        rando_id = rando_py["results"][0]["id"]
         print('rando recipe ID is ->',str(rando_id))
         
+        #get recipe summary
         summary = utils.get_recipe_summary(rando_id)
+        
+        summary_py = summary.json()
+        
+        #get recipe details
         details = utils.get_recipe_details(rando_id)
+        
+        details_py = details.json()
 
     context = {
         'list_of_cuisines': list_of_cuisines,
-        'random_recipe': rando,
-        'recipe_summary': summary, 
-        'recipe_details': details,
+        'random_recipe': rando.text,
+        'recipe_summary': summary.text, 
+        'recipe_details': details.text,
     }
 
-    return render(request, 'pages/home.html', context)
+    return render(request, 'pages/test.html', context)
 
 def about(request):
     context = {
@@ -74,23 +122,6 @@ def about(request):
 
     return render(request, 'pages/about.html', context)
 
-# test view function
-# using placeholder values from the API call to test
-# how to retrieve and display specific data
-def test_page(request):
-
-    # AT - I moved this data to tests.py since my weak ass computer couldn't process all the brackets in the recipe details which made this file unusable for me.
-    rando = tests.rando
-    summary = tests.summary
-    details = tests.details
-    
-    context = {
-        'random_recipe': rando,
-        'recipe_summary': summary, 
-        'recipe_details': details,
-    }
-
-    return render(request, 'pages/home.html', context)
 
 
 

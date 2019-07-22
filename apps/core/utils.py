@@ -41,9 +41,7 @@ def get_recipe_by_cuisine(cuisine):
     #build query and make GET request
     response = requests.get(base_url, params=query_params, headers=api_headers)
     
-    data = response.json()
-    
-    return data
+    return response
 
 #get a summary of the recipe by id
 def get_recipe_summary(id):
@@ -55,9 +53,8 @@ def get_recipe_summary(id):
     #build query and make GET request
     response = requests.get(base_url, headers=api_headers)
 
-    data = response.json()
+    return response
 
-    return data
     
 #get recipe details by id
 def get_recipe_details(id):
@@ -69,8 +66,6 @@ def get_recipe_details(id):
     #build query and make GET request
     response = requests.get(base_url, headers=api_headers)
     
-    data = response.json()
-    
-    return data
+    return response
     
     
