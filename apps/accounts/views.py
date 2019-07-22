@@ -13,7 +13,7 @@ def log_in(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect('home')
+            return redirect('index')
     else:
         form = AuthenticationForm()
 
@@ -32,7 +32,7 @@ def sign_up(request):
             # Log-in the user right away
             messages.success(request, 'Account created successfully. Welcome!')
             login(request, user)
-            return redirect('home')
+            return redirect('index')
     else:
         form = SignupForm()
 
@@ -45,7 +45,7 @@ def sign_up(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Logged out.')
-    return redirect('home')
+    return redirect('index')
 
 
 def view_all_users(request):
@@ -76,7 +76,7 @@ def edit_profile(request):
         form = UserEditForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('index')
     else:
         form = UserEditForm(instance=request.user)
 
@@ -100,7 +100,7 @@ def log_in2(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect('home')
+            return redirect('index')
     else:
         form = AuthenticationForm()
 
