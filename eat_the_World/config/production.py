@@ -7,4 +7,4 @@ DEBUG = False
 import django_heroku
 django_heroku.settings(locals())
 
-ALLOWED_HOSTS = [‘0.0.0.0’, ‘localhost’, ‘eat-the-world.herokuapp.com’]
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'eat-the-world.herokuapp.com']
