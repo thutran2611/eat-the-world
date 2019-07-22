@@ -90,7 +90,7 @@ def test_page(request):
         'recipe_details': details,
     }
 
-    return render(request, 'pages/index.html', context)
+    return render(request, 'pages/home.html', context)
 
 
 
