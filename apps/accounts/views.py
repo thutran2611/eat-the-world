@@ -68,7 +68,7 @@ def view_profile(request, username):
         'user': user,
         'is_viewing_self': is_viewing_self,
     }
-    return render(request, 'accounts/profile_page.html', context)
+    return render(request, 'accounts/user_account.html', context)
 
 @login_required
 def edit_profile(request):
@@ -88,7 +88,21 @@ def edit_profile(request):
 
 #temporary view functions for our two templates
 def signup2(request):
-    context =  {}
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+
+            # Log-in the user right away
+            messages.success(request, 'Account created successfully. Welcome!')
+            login(request, user)
+            return redirect('index')
+    else:
+        form = SignupForm()
+
+    context = {
+        'form': form,
+    }
     return render(request, 'accounts/signup2.html', context)
 
 def account(request):

@@ -606,7 +606,9 @@ header {
     margin-right: 0.4rem;
     vertical-align: text-bottom;
 }
-
+.alert-padding {
+    margin-top: 100px;
+}
 
 /*  FOOTER
 ----------------------*/

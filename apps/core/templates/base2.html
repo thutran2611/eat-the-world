@@ -3,7 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Eat The World - Recipes & More</title>
+    <title>
+            {% block title %}
+        {% endblock title %}
+    </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -23,6 +26,8 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <!-- Main css -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/eat-custom.css' %}" rel="stylesheet">
+
 </head>
 
 <body data-spy="scroll" data-target="#navbar" data-offset="30">
@@ -34,8 +39,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-dark navbar-expand-lg">
-                        <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" class="img-fluid" alt="logo"></a> 
+                        <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" class="img-fluid" alt="logo"></a>
+
+<!-- if user is logged in -->
+                {% if request.user.is_authenticated %}
+                        <a class="btn btn-outline-light my-3 my-sm-0 ml-lg-3" href="{% url 'view_profile' request.user %}" ><span class="ti-user">   </span>
+                            {{ request.user }}
+                        </a>
+
+                {% else %}
 <a href="/account/login2/" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3"><span class="ti-user">   </span>LOGIN</a>
+                {% endif %}
+
 
                     </nav>
                 </div>
@@ -51,15 +66,15 @@
       {# Enable Django's "messages" system #}
       {% if messages %}
           {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+              <div class="alert alert-padding {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
           {% endfor %}
       {% endif %}
 
       {% block content %}
-        <p>Use this as a way to quick start any new project.</p>
+ 
       {% endblock content %}
-
     </div>
+
 {% endblock main %}
 
 <!-- FOOTER -->
@@ -96,10 +111,10 @@
     <footer class="my-5 text-center">
         <!-- Copyright removal is not prohibited! -->
         <p class="mb-2"><small>COPYRIGHT © 2019. ALL RIGHTS RESERVED. EAT THE WORLD</small></p>
-
+<!--
         <small>
             <a href="#" class="m-2">ABOUT</a>
-        </small>
+        </small> -->
     </footer>
 
     <!-- jQuery and Bootstrap -->

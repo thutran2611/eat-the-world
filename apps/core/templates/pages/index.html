@@ -4,6 +4,10 @@
 {% load static %}
 {% load bootstrap4 %}
 
+            {% block title %}
+     Eat The World - Recipes & More
+        {% endblock title %}
+
 {% block content %}
 
 
@@ -18,18 +22,20 @@
 
     </header>
 
-<div class="section">
+<div class="section" id='select-a-cuisine'>
         <div class="container">
             <div class="section-title">
 
 <!-- Dropdown for Cuisine Selection -->
 <div class="dropdown">
-  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="collapse" href="#openCuisineList" aria-haspopup="true" aria-expanded="false" aria-controls="openCuisineList">
     Select a Cuisine
   </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <div class="row mt-3">
+  <div class="col">
+    <div class="collapse" id="openCuisineList">
     {% for cuisine in list_of_cuisines %}
-    <a class="dropdown-item" href="/{{ cuisine.id }}">{{ cuisine.name|title }}</a>
+    <a class="dropdown-item" href="/{{ cuisine.id }}/#select-a-cuisine">{{ cuisine.name|title }}</a>
     {% endfor %}
 <!--    <a class="dropdown-item" href="#">Chinese</a>-->
 <!--    <a class="dropdown-item" href="#">French</a>-->
@@ -38,85 +44,13 @@
 <!--    <a class="dropdown-item" href="#">Thai</a>-->
 <!--    <a class="dropdown-item" href="#">Vietnamese</a>-->
     </div>
-</div>
 
+</div>
+</div>
+</div>
+ 
 <!-- End Dropdown for Cuisine Selection -->
 
-
-<!-- Listing out Cuisine Selections -->
-
-<div class="row my-5">
-            <ul class="nav nav-justified text-nowrap" >
-            {% for cuisine in list_of_cuisines %}
-                <li class="nav-item">
-                    <a class="nav-link active" href="/{{ cuisine.id }}">{{ cuisine.name|title }}</a>
-                </li>
-            {% endfor %}
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">French</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link active" data-toggle="tab" href="#">American</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">French</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link active" data-toggle="tab" href="#">American</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Chinese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">French</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Italian</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Japanese</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Thai</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" data-toggle="tab" href="#">Vietnamese</a>-->
-<!--                </li>-->
-            </ul>
-              
-</div>
-
-<!-- End Listing out Cuisine Selections -->
 
 
 
@@ -125,17 +59,34 @@
     </div>
     <!-- // end .section -->
 
-<div>
-    <p>Recipe ID -> {{ recipe.results.0.id }}</p>
-	<p>Recipe Title -> {{ recipe.results.0.title }}</p>
-	<p>Recipe Image -> <img src="{{ recipe.results.0.image }}"></p>
+<!-- Show a preview of the recipe -->    
+{% if recipe.results.0.id > 0 %}
+        <div class="section-title">
+            <p><h5><strong>{{ selected_cuisine.name|title }}</strong> Recipe</h5></p>
+    <div class="media-body" id="chosen-recipe">
+    <!-- <p>Recipe ID -> {{ recipe.results.0.id }}</p> -->
+	<h3>{{ recipe.results.0.title }}</h3>
+	<p><img src="{{ recipe.results.0.image }}"></p>
 </div>
 
     <a href="/recipe/{{ recipe.results.0.id }}" class="btn btn-primary btn-lg" role="button">
         Get Recipe Details
     </a>
+    <p>
+    </p>
+    <p> OR </p>
+    <p><button class="btn btn-primary btn-sm another-recipe" role="button" value="Refresh Page" onClick="window.location.reload();">
+        Get Another Recipe</button>
+    </a></p>
+</div>
+{% endif %}
 
-<!-- This section was part of the template and looked kinda cool but we can delete if unneeded -->
+<!-- End Show a preview of the recipe -->    
+
+
+{% if not recipe.results.0.id > 0 %}
+
+<!-- How it works -->
 
     <div class="section light-bg">
 
@@ -147,21 +98,21 @@
                             <div class="circle-icon mr-4">1</div>
                             <div class="media-body">
                                 <h5>Choose a cuisine</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
+                                <p>No matter what type of food you currently feel like, we should have something for you.</p>
                             </div>
                         </li>
                         <li class="media my-4">
                             <div class="circle-icon mr-4">2</div>
                             <div class="media-body">
                                 <h5>Get an awesome recipe</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem eveniet</p>
+                                <p>We use a combination of algorithms, blockchain & artificial intelligence to give you the right recipe.</p>
                             </div>
                         </li>
                         <li class="media">
                             <div class="circle-icon mr-4">3</div>
                             <div class="media-body">
                                 <h5>Sign up to save recipes</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
+                                <p>By creating an account, you gain access to the ability to save your favorite recipes for later.</p>
                             </div>
                         </li>
                     </ul>
@@ -178,11 +129,11 @@
     <!-- // end .section -->
 
 
-<!-- END This section was part of the template and looked kinda cool but we can delete if unneeded -->
-
+<!-- END How it works -->
+{% endif %}
 
 <!-- Call to action to sign up. Should not show up for logged in users -->
-
+{% if not request.user.is_authenticated %}
     <div class="section bg-gradient">
         <div class="container">
             <div class="call-to-action">
@@ -191,17 +142,18 @@
                 <h2>Save recipes and more</h2>
                 <p class="tagline">It's free to become a member.</p>
                 <div class="my-4">
-                    <a href="#" class="btn btn-light">Sign-up</a>
+                    <a href="/account/signup2/" class="btn btn-light">Sign-up</a>
                 </div>
                 <p class="text-primary"><small><i>*$20/month subscription fee after 10 minute free trial.</i></small></p>
             </div>
         </div>
 
     </div>
+
     <!-- // end .section -->
 
 <!-- END Call to action to sign up section -->
 
-
+{% endif %}
 
 {% endblock %}

@@ -22,48 +22,12 @@
 
     <p class="text-center">Have an account? <a href="/account/login2/">Log In</a> </p>
 
+{% block form %}
 
+{% include "accounts/form_snippet.html" with form_title="Sign Up" %}
 
-<!-- signup form -->
+{% endblock form %}
 
-    <form>
-    <div class="form-group input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text ti-user gradient-fill ti-2x mr-2"> </span>
-         </div>
-        <input name="" class="form-control" placeholder="Name" type="text">
-    </div> <!-- form-group// -->
-    <div class="form-group input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text ti-email gradient-fill ti-2x mr-2"></span>
-         </div>
-        <input name="" class="form-control" placeholder="Email address" type="email">
-    </div> <!-- form-group// -->
-    
-    <div class="form-group input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> </span>
-        </div>
-
-    </div> <!-- form-group end.// -->
-    <div class="form-group input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text ti-lock gradient-fill ti-2x mr-2 "></i> </span>
-        </div>
-        <input class="form-control" placeholder="Create password" type="password">
-    </div> <!-- form-group// -->
-    <div class="form-group input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text ti-lock gradient-fill ti-2x mr-2"> </span>
-        </div>
-        <input class="form-control" placeholder="Repeat password" type="password">
-    </div> <!-- form-group// -->                                      
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-    </div> <!-- form-group// -->      
-                                                                 
-</form>
-</article>
 </div> <!-- card.// -->
 
 <!-- END signup form -->
