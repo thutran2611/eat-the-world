@@ -2,55 +2,64 @@
 {% load bootstrap4 %}
 
 {% load static %}
+
+
+            {% block title %}
+      {{ recipe.title|title }} | Eat The World
+        {% endblock title %}
+
+
 {% block content %}
 
 
 
     <header class="bg-gradient" id="home">
         <div class="container mt-5">
-            <h1>Recipe Name</h1>
-            <p class="tagline">Recipe description can go here. Topping cake topping sugar plum candy canes sweet. Wafer chupa chups toffee icing donut gummies gingerbread tootsie roll. Icing dessert bonbon donut sweet roll.r</p>
+            <h1>{{ recipe.title|title }}</h1>
+            <p class="tagline">{{ recipe.summary }}</p>
             <br>
-                        <br>
         </div>
-
     </header>
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-2">Preparation: {{ recipe.preparationMinutes }} minutes</span>
+    <span class="navbar-brand mb-2">Cooking: {{ recipe.cookingMinutes }} minutes</span>
+        <span class="navbar-brand mb-2">Servings: {{ recipe.servings }}</span>
+</nav>
 
-<div class="section">
-        <div class="container">
-            <div class="section-title">
+
+<div class="container">
+
+<div class="call-to-action">
+<img class="img-fluid mb-2" src="{{ recipe.image }}">
+<h5><span class="ti-heart gradient-fill"></span>Save Recipe</h5>
+</div>
+
+<h2>Ingredients:</h2>
+
+{% for ingredient in recipe.extendedIngredients %}
+<p>{{ ingredient.originalString }}</p>
+{% endfor %}
 
 
-<h2>-- Recipe here --</span></h2>
+<!-- Steps -->
 
-<h4> Recipe "object" (NOTE FOR JSON GO TO /test PAGE)</h4>
-<p>{{ recipe }}</p>
-<br>
+<h2>Steps:</h2>
+{% for step in recipe.analyzedInstructions.0.steps %}
+<p><strong>{{ step.number }}.</strong> {{ step.step }}</p>
 
-<!-- <img src="https://images.media-allrecipes.com/userphotos/560x315/6754461.jpg"> -->
-<img src="{% static 'images/logo.png' %}">
+{% endfor %}
 
-<div class="section">
-<ul>Ingredients
-    <li>chicken</li>
-    <li>salt</li>
-    <li>oil</li>
-</ul>
+<!-- End Steps -->
+
+
 </div>
 
 
-<!-- Some way to save a recipe -->
-<h3>Save Recipe<span class="ti-heart gradient-fill"></span></h3>
-
-
-            </div>
-        </div>
-    </div>
     <!-- // end .section -->
 
 
 
-
+{% if not request.user.is_authenticated %}
 <!-- Call to action to sign up. Should not show up for logged in users -->
 
     <div class="section bg-gradient">
@@ -61,7 +70,7 @@
                 <h2>Save recipes and more</h2>
                 <p class="tagline">It's free to become a member.</p>
                 <div class="my-4">
-                    <a href="#" class="btn btn-light">Sign-up</a>
+                    <a href="/account/signup2/" class="btn btn-light">Sign-up</a>
                 </div>
                 <p class="text-primary"><small><i>*$20/month subscription fee after 10 minute free trial.</i></small></p>
             </div>
@@ -71,7 +80,7 @@
     <!-- // end .section -->
 
 <!-- END Call to action to sign up section -->
-
+{% endif %}
  
 
 {% endblock %}
