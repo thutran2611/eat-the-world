@@ -71,6 +71,7 @@ def test(request):
     cuisine = None
     selected_cuisine = None
     rando.text = None
+    rand = None
     summary.text = None
     details.text= None
     
