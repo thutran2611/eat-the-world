@@ -30,7 +30,7 @@
 </div>
 
 <h2>List of Cuisines</h2>
-    <form action="test" method="GET">
+    <form action="." method="GET">
         {% csrf_token %}
         {{ list_of_cuisines.as_p }}
         <button class="btn btn-primary">Get a Recipe!</button>

@@ -70,10 +70,10 @@ def test(request):
     
     cuisine = None
     selected_cuisine = None
-    rando.text = None
-    rand = None
-    summary.text = None
-    details.text= None
+    rando = None
+    summary = None
+    details = None
+    
     
     #Get list of cuisines from database since no way to dynamically pull from spoonful API and no need since will change very rarely
     list_of_cuisines = CuisineForm()
@@ -88,7 +88,7 @@ def test(request):
     else:
         print('no selected cuisine provided')
 
-    if selected_cuisine:    
+    if selected_cuisine:
         rando = utils.get_recipe_by_cuisine(selected_cuisine)
         
         #convert to python
@@ -107,12 +107,17 @@ def test(request):
         details = utils.get_recipe_details(rando_id)
         
         details_py = details.json()
+        
+        if rando:
+            rando = rando.text
+            summary = summary.text
+            details = details.text
 
     context = {
         'list_of_cuisines': list_of_cuisines,
-        'random_recipe': rando.text,
-        'recipe_summary': summary.text, 
-        'recipe_details': details.text,
+        'random_recipe': rando,
+        'recipe_summary': summary, 
+        'recipe_details': details,
     }
 
     return render(request, 'pages/test.html', context)
