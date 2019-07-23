@@ -70,9 +70,9 @@ def test(request):
     
     cuisine = None
     selected_cuisine = None
-    rando = None
-    summary = None
-    details= None
+    rando.text = None
+    summary.text = None
+    details.text= None
     
     #Get list of cuisines from database since no way to dynamically pull from spoonful API and no need since will change very rarely
     list_of_cuisines = CuisineForm()
