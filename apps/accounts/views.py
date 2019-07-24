@@ -44,7 +44,7 @@ def sign_up(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request, 'Logged out.')
+    messages.success(request, 'Signed out.')
     return redirect('index')
 
 
