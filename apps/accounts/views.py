@@ -113,8 +113,9 @@ def log_in2(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            login(request, form.get_user())
-            return redirect('index')
+            user = form.get_user()
+            login(request, user)
+            return redirect('view_profile', user.username)
     else:
         form = AuthenticationForm()
 
