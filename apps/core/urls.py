@@ -14,4 +14,7 @@ urlpatterns = [
     #page path for a specific recipe based on id
     path('recipe/<int:id>/', views.recipe),
     path('recipe/', views.recipe, name='recipe'), 
+
+    #page path to save a recipe based on id
+    path('save-recipe/<int:recipe_id>/',views.save_recipe),
 ]

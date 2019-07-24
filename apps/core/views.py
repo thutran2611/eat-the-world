@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django import forms
-from .models import Cuisine
+from .models import Cuisine, SavedRecipe
 from . import utils
 from . import tests
+from apps.accounts.models import User
+from django.contrib.auth import authenticate
 
 class CuisineForm(forms.Form):
 #    class Meta:
@@ -131,7 +133,13 @@ def about(request):
 
 
 
+def save_recipe(request,recipe_id):
+#    if request.user.is_authenticated():
+    SavedRecipe.objects.create(
+       user=request.user,
+       recipe_id=recipe_id)
 
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 
