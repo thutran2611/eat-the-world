@@ -17,7 +17,7 @@ class CuisineForm(forms.Form):
     cuisine = forms.ModelChoiceField(queryset=Cuisine.objects.order_by('name'))
 
 #Views based on the template Reuben and Kyle are working on
-def index(request, id=0):
+def index(request, cuisine_id=0):
     
        
     #list of cuisines
@@ -26,8 +26,8 @@ def index(request, id=0):
     rando_py = None
     
     #if a cuisine is provided get 
-    if id > 0:
-        selected_cuisine = Cuisine.objects.get(id=id)
+    if cuisine_id > 0:
+        selected_cuisine = Cuisine.objects.get(id=cuisine_id)
         
         print('the selected cuisine is ->',selected_cuisine)
         
@@ -50,14 +50,17 @@ def index(request, id=0):
     }
     return render(request, 'pages/index.html',context)
 
-def recipe(request, id=0):
+def recipe(request, recipe_id=0):
     details_py = None
     
-    if id > 0:
+    if recipe_id > 0:
         #get recipe details
-        details = utils.get_recipe_details(id)
+        details = utils.get_recipe_details(recipe_id)
         
         details_py = details.json()
+    else:
+        print('Call to get recipe details without a recipe id')
+        print(request)
     
     context = {
         "recipe": details_py,
@@ -73,11 +76,10 @@ def test(request):
     cuisine = None
     selected_cuisine = None
     rando = None
-    summary = None
     details = None
     
     
-    #Get list of cuisines from database since no way to dynamically pull from spoonful API and no need since will change very rarely
+    #Get list of cuisines from database since no way to dynamically pull from spoonful API
     list_of_cuisines = CuisineForm()
     
     # TODO figure out how request will be coming in for a recipe
@@ -100,11 +102,6 @@ def test(request):
         rando_id = rando_py["results"][0]["id"]
         print('rando recipe ID is ->',str(rando_id))
         
-        #get recipe summary
-        summary = utils.get_recipe_summary(rando_id)
-        
-        summary_py = summary.json()
-        
         #get recipe details
         details = utils.get_recipe_details(rando_id)
         
@@ -112,24 +109,15 @@ def test(request):
         
         if rando:
             rando = rando.text
-            summary = summary.text
             details = details.text
 
     context = {
         'list_of_cuisines': list_of_cuisines,
         'random_recipe': rando,
-        'recipe_summary': summary, 
         'recipe_details': details,
     }
 
     return render(request, 'pages/test.html', context)
-
-def about(request):
-    context = {
-    }
-
-    return render(request, 'pages/about.html', context)
-
 
 
 

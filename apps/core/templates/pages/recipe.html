@@ -1,4 +1,4 @@
-{% extends "base2.html" %}
+{% extends "base.html" %}
 {% load bootstrap4 %}
 
 {% load static %}
@@ -80,7 +80,7 @@
                 <h2>Save recipes and more</h2>
                 <p class="tagline">It's free to become a member.</p>
                 <div class="my-4">
-                    <a href="/account/signup2/" class="btn btn-light">Sign-up</a>
+                    <a href="{% url 'signup' %}" class="btn btn-light">Sign-up</a>
                 </div>
                 <p class="text-primary"><small><i>*$20/month subscription fee after 10 minute free trial.</i></small></p>
             </div>

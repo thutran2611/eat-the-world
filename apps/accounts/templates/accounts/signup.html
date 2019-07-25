@@ -1,7 +1,39 @@
-{% extends 'base.html' %}
+{% extends "accounts_base.html" %}
+{% load bootstrap4 %}
 
 {% block content %}
+    <header class="bg-gradient" id="home">
+        <div class="container mt-5">
+            <h1>Sign-up</h1>
+            <p class="tagline">Get started with your free account</p>
+            <br>
+                        <br>
+        </div>
+
+    </header>
+
+<div class="section">
+        <div class="container">
+            <div class="section-title">
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+    <p>
+
+    <p class="text-center">Have an account? <a href="{% url 'login' %}">Log In</a> </p>
+
+{% block form %}
 
 {% include "accounts/form_snippet.html" with form_title="Sign Up" %}
 
-{% endblock %}
+{% endblock form %}
+
+</div> <!-- card.// -->
+
+<!-- END signup form -->
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

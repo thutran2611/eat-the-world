@@ -1,5 +1,5 @@
 
-{% extends "base2.html" %}
+{% extends "base.html" %}
 
 {% load static %}
 {% load bootstrap4 %}
@@ -36,12 +36,6 @@
     {% for cuisine in list_of_cuisines %}
     <a class="dropdown-item" href="/{{ cuisine.id }}/#select-a-cuisine">{{ cuisine.name|title }}</a>
     {% endfor %}
-<!--    <a class="dropdown-item" href="#">Chinese</a>-->
-<!--    <a class="dropdown-item" href="#">French</a>-->
-<!--    <a class="dropdown-item" href="#">Italian</a>-->
-<!--    <a class="dropdown-item" href="#">Japanese</a>-->
-<!--    <a class="dropdown-item" href="#">Thai</a>-->
-<!--    <a class="dropdown-item" href="#">Vietnamese</a>-->
     </div>
 
 </div>
@@ -141,7 +135,7 @@
                 <h2>Save recipes and more</h2>
                 <p class="tagline">It's free to become a member.</p>
                 <div class="my-4">
-                    <a href="/account/signup2/" class="btn btn-light">Sign-up</a>
+                    <a href="{% url 'signup' %}" class="btn btn-light">Sign-up</a>
                 </div>
                 <p class="text-primary"><small><i>*$20/month subscription fee after 10 minute free trial.</i></small></p>
             </div>

@@ -2,32 +2,29 @@
 
 
 {% block title %}
-    My Site - Home
+    ETW Test Page
 {% endblock title %}
 
 
 {% block content %}
-<div class="jumbotron">
-  <h1 class="display-4"> TEST PAGE FOR -> EAT THE WORLD
+    <header class="bg-gradient" id="home">
+        <div class="container mt-5">
+            <h1>Recipes for You</h1>
+            <p class="tagline"><strong>Eat The World</strong> helps you find a great recipe for any cuisine.</p>
+            <br />
+            <br />
+        </div>
+
+    </header>
 
 <!-- example of pulling specific data from api output -->	
-{% for recipe in random_recipe.results %}
-	{{ recipe.title }}
-	<img src="{{ recipe.image }}">
+    {% for recipe in random_recipe.results %}
+        {{ recipe.title }}
+        <img src="{{ recipe.image }}">
+    {% endfor %}
+    <!-- example of pulling specific data from api output -->
+    </h1>
 
-{% endfor %}
-	<!-- example of pulling specific data from api output -->
-
-
-</h1>
-
-  <p class="lead">This is a simple Jumbotron component from Bootstrap 4.</p>
-  <hr class="my-4">
-  <p>Edit this to include your content.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="{% url 'about' %}" role="button">Learn more</a>
-  </p>
-</div>
 
 <h2>List of Cuisines</h2>
     <form action="." method="GET">
@@ -35,15 +32,10 @@
         {{ list_of_cuisines.as_p }}
         <button class="btn btn-primary">Get a Recipe!</button>
     </form>
-<!--<p>{{ list_of_cuisines }}.</p>-->
 <br />
 <hr>
 <h2>Random Recipe</h2>
 <p>{{ random_recipe }}</p>
-<br />
-<hr>
-<h2>Recipe Summary (NOT USING)</h2>
-<p>{{ recipe_summary }}</p>
 <br />
 <hr>
 <h2>Recipe Details</h2>

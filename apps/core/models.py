@@ -18,6 +18,7 @@ class SavedRecipe(models.Model):
         on_delete=models.CASCADE,
     )
     recipe_id = models.IntegerField()
+    title = models.CharField(max_length=512)
     created = models.DateTimeField(auto_now_add=True)
     class Meta:
         unique_together = [['user','recipe_id']]

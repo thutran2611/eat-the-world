@@ -32,6 +32,7 @@ def get_recipe_by_cuisine(cuisine):
             'type': 'main course',
             #2 is by "relevance" which I think behaves as ranking it by a score
             'ranking': 2,
+            'instructionsRequired': 'true',
             'limitLicense': 'false',
             #to avoid always bringing back the same #1 recipe, randomly select from top 20 ranked recipes returned
             'offset': random.randint(1,21),
@@ -41,19 +42,21 @@ def get_recipe_by_cuisine(cuisine):
     #build query and make GET request
     response = requests.get(base_url, params=query_params, headers=api_headers)
     
+    print(response.headers)
+    
     return response
 
-#get a summary of the recipe by id
-def get_recipe_summary(id):
-    print('call to get_recipe_summary for recipe id',str(id))
-    
-    #build query
-    base_url = base_api_url + str(id) + '/summary'
-    
-    #build query and make GET request
-    response = requests.get(base_url, headers=api_headers)
+##get a summary of the recipe by id
+#def get_recipe_summary(id):
+#    print('call to get_recipe_summary for recipe id',str(id))
+#    
+#    #build query
+#    base_url = base_api_url + str(id) + '/summary'
+#    
+#    #build query and make GET request
+#    response = requests.get(base_url, headers=api_headers)
 
-    return response
+#    return response
 
     
 #get recipe details by id

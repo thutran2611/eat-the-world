@@ -4,16 +4,13 @@ from apps.core import views
 
 urlpatterns = [
     path('test/', views.test, name='test'),
-    path('test/<int:id>/', views.test),
-    path('about/', views.about, name='about'),
     path('', views.index, name='index'),
 
     #page path for a cuisine category id
-    path('<int:id>/', views.index),
+    path('<int:cuisine_id>/', views.index),
 
     #page path for a specific recipe based on id
-    path('recipe/<int:id>/', views.recipe),
-    path('recipe/', views.recipe, name='recipe'), 
+    path('recipe/<int:recipe_id>/', views.recipe, name='recipe'),
 
     #page path to save a recipe based on id
     path('save-recipe/<int:recipe_id>/',views.save_recipe),
