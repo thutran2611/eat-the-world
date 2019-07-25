@@ -10,4 +10,5 @@
 
 .show-zindex {
 	z-index: 9999;
+	margin-bottom: -4rem;
 }
