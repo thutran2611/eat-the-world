@@ -77,14 +77,18 @@
       {# Enable Django's "messages" system #}
       {% if messages %}
           {% for message in messages %}
-              <div class="alert alert-padding {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+              <div class="alert show-zindex alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
           {% endfor %}
       {% endif %}
 
       {% block content %}
  
       {% endblock content %}
-    </div>
+    
 
 {% endblock main %}
 
@@ -116,6 +120,8 @@
             </div>
 
         </div>
+
+    </div>
 
     </div>
     <!-- // end .section -->
