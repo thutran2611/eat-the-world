@@ -135,7 +135,7 @@ def save_recipe(request,recipe_id):
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+
 
 
 
