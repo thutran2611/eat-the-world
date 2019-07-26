@@ -122,10 +122,18 @@ def test(request):
 
 
 def save_recipe(request,recipe_id):
-#    if request.user.is_authenticated():
-    SavedRecipe.objects.create(
-       user=request.user,
-       recipe_id=recipe_id)
+    if SavedRecipe.objects.filter(user=request.user, recipe_id=recipe_id).exists():
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        details = utils.get_recipe_details(recipe_id).json()
+        SavedRecipe.objects.create(
+            user=request.user,
+            recipe_id=recipe_id,
+            recipe_title = details['title'],
+            recipe_link = details['sourceUrl'],
+            )
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
 

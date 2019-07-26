@@ -1,4 +1,4 @@
-{% extends "accounts_base.html" %}
+{% extends "base.html" %}
 
 
 {% block content %}
@@ -24,20 +24,24 @@
 <!-- this is where to loop through saved recipes -->
 <!-- for recipe in saved_recipes -->
 
+{% for recipe in saved_recipes %}
                 <div class="col-12 col-lg-4">
                     <div class="card features">
                         <div class="card-body">
                             <div class="media">
                                 <span class="ti-heart gradient-fill ti-3x mr-3"></span>
                                 <div class="media-body">
-                                    <h4 class="card-title"> recipe.name </h4>
-                                    <p class="card-text"> recipe.summary? </p>
+                                   
+<!--                                    <h4 class="card-title"> recipe.name </h4>-->
+                                    <h4 class="card-title"> {{ recipe.recipe_title }} </h4>
+                                    <p class="card-text"> <a href = "{{ recipe.recipe_link }}" target ="_blank"> Link to recipe here!</a> </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+{% endfor %}
 <!-- end for -->
 
 
