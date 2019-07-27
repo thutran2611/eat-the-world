@@ -21,3 +21,5 @@ class SavedRecipe(models.Model):
     recipe_title = models.CharField(max_length=512)
     recipe_link = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = [['user','recipe_id']]
