@@ -60,12 +60,12 @@ def view_profile(request, username):
     else:
         is_viewing_self = False
 
-    saved_recipes = SavedRecipe.objects.order_by('-created')
-    saved_by_user = saved_recipes.filter(user=user)
+#    saved_recipes = SavedRecipe.objects.order_by('-created')
+#    saved_by_user = saved_recipes.filter(user=user)
     context = {
         'user': user,
         'is_viewing_self': is_viewing_self,
-        'saved_recipes':saved_by_user,
+#        'saved_recipes':saved_by_user,
     }
     return render(request, 'accounts/user_account.html', context)
 
