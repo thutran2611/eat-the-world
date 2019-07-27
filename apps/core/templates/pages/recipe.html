@@ -20,49 +20,56 @@
             <br>
         </div>
     </header>
-<nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-2">Preparation: {{ recipe.preparationMinutes }} minutes</span>
-    <span class="navbar-brand mb-2">Cooking: {{ recipe.cookingMinutes }} minutes</span>
-        <span class="navbar-brand mb-2">Servings: {{ recipe.servings }}</span>
-</nav>
+    
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-2">Preparation: {{ recipe.preparationMinutes }} minutes</span>
+        <span class="navbar-brand mb-2">Cooking: {{ recipe.cookingMinutes }} minutes</span>
+            <span class="navbar-brand mb-2">Servings: {{ recipe.servings }}</span>
+    </nav>
 
 
-<div class="container">
-
-<div class="call-to-action">
-<img class="img-fluid mb-2" src="{{ recipe.image }}">
-<!--<h5><span class="ti-heart gradient-fill"></span>Save Recipe</h5>-->
-<!--Authenticate user and let them save recipe-->
-    {% if user.is_authenticated %}
-        <div class="links">
-            <a href="/save-recipe/{{ recipe.id }}/" class="btn btn-link">
-                <i class="octicon octicon-heart"></i>
-                {{ recipe.saved.all|length }}
-            </a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 col-md-6">
+                <img class="img-fluid mb-2" src="{{ recipe.image }}">
+            </div>
         </div>
-    {% endif %}
 
-</div>
+        <div class="row justify-content-center">
+            <div class="col-3 align-self-center">
+            {% if user.is_authenticated %}
+                <form action ="/save-recipe/" method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                  <button type="submit" class="btn btn-lg btn-outline-primary ti-heart gradient-fill ti-3x"> Save Recipe</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}?next={{request.path}}" type="button"  class="btn btn-lg btn-outline-primary ti-heart gradient-fill ti-3x"> Save Recipe</a>
+            {% endif %}
 
-<h2>Ingredients:</h2>
+            </div>
+        </div>
 
-{% for ingredient in recipe.extendedIngredients %}
-<p>{{ ingredient.originalString }}</p>
-{% endfor %}
+        <div>
+            <h2>Ingredients:</h2>
 
-
-<!-- Steps -->
-
-<h2>Steps:</h2>
-{% for step in recipe.analyzedInstructions.0.steps %}
-<p><strong>{{ step.number }}.</strong> {{ step.step }}</p>
-
-{% endfor %}
-
-<!-- End Steps -->
+            {% for ingredient in recipe.extendedIngredients %}
+                <p>{{ ingredient.originalString }}</p>
+            {% endfor %}
 
 
-</div>
+            <!-- Steps -->
+
+            <h2>Steps:</h2>
+            {% for step in recipe.analyzedInstructions.0.steps %}
+                <p><strong>{{ step.number }}.</strong> {{ step.step }}</p>
+
+            {% endfor %}
+
+            <!-- End Steps -->
+        </div>
+
+    </div>
 
 
     <!-- // end .section -->

@@ -5,16 +5,14 @@ from . import utils
 from . import tests
 from apps.accounts.models import User
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 class CuisineForm(forms.Form):
-#    class Meta:
-#        model = Cuisine
-#        fields = ['name']
-#        widgets = {
-#            #can't figure out how to query db objects to populate drop-down
-#            'name': forms.Select()
-#        }
     cuisine = forms.ModelChoiceField(queryset=Cuisine.objects.order_by('name'))
+    
+class SavedRecipeForm(forms.Form):
+    recipe_id = forms.IntegerField(widget=forms.HiddenInput())
+    title = forms.CharField(widget=forms.HiddenInput())
 
 #Views based on the template Reuben and Kyle are working on
 def index(request, cuisine_id=0):
@@ -52,18 +50,27 @@ def index(request, cuisine_id=0):
 
 def recipe(request, recipe_id=0):
     details_py = None
+    form = None
     
     if recipe_id > 0:
         #get recipe details
         details = utils.get_recipe_details(recipe_id)
         
         details_py = details.json()
+        
+        default_form_data = {
+                    'recipe_id': recipe_id,
+                    'title': details_py['title'],
+        }
+        form = SavedRecipeForm(default_form_data)
     else:
         print('Call to get recipe details without a recipe id')
         print(request)
     
     context = {
         "recipe": details_py,
+        "form": form,
+        
     }
 
     return render(request, 'pages/recipe.html',context)
@@ -120,12 +127,23 @@ def test(request):
     return render(request, 'pages/test.html', context)
 
 
-
-def save_recipe(request,recipe_id):
-#    if request.user.is_authenticated():
-    SavedRecipe.objects.create(
-       user=request.user,
-       recipe_id=recipe_id)
+@login_required()
+def save_recipe(request):
+    print(request.POST)
+#    if request.user.is_authenticated:
+    is_already_saved = SavedRecipe.objects.filter(recipe_id=request.POST['recipe_id'],
+        user=request.user,
+    )
+    if not is_already_saved:
+        SavedRecipe.objects.create(
+           user=request.user,
+           recipe_id=request.POST['recipe_id'],
+           title=request.POST['title'],
+        )
+    else:
+        print('recipe already saved by this user')
+#    else:
+#        print('Unauthenticated user attempted to save a favorite')
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
 

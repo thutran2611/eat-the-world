@@ -13,5 +13,7 @@ urlpatterns = [
     path('recipe/<int:recipe_id>/', views.recipe, name='recipe'),
 
     #page path to save a recipe based on id
-    path('save-recipe/<int:recipe_id>/',views.save_recipe),
+#    path('save-recipe/<int:recipe_id>/',views.save_recipe),
+    
+    path('save-recipe/', views.save_recipe),
 ]

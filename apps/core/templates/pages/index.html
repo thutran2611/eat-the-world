@@ -1,12 +1,11 @@
-
 {% extends "base.html" %}
 
 {% load static %}
 {% load bootstrap4 %}
 
-            {% block title %}
+    {% block title %}
      Eat The World - Recipes & More
-        {% endblock title %}
+    {% endblock title %}
 
 {% block content %}
 
@@ -16,61 +15,54 @@
             <h1>Recipes for You</h1>
             <p class="tagline"><strong>Eat The World</strong> helps you find a great recipe for any cuisine.</p>
             <br>
-                        <br>
+            <br>
         </div>
 
     </header>
 
 <div class="section" id='select-a-cuisine'>
-        <div class="container">
-            <div class="section-title">
+    <div class="container">
+        <div class="section-title">
 
 <!-- Dropdown for Cuisine Selection -->
-<div class="dropdown">
-  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="collapse" href="#openCuisineList" aria-haspopup="true" aria-expanded="false" aria-controls="openCuisineList">
-    Select a Cuisine
-  </button>
-  <div class="row mt-3">
-  <div class="col">
-    <div class="collapse" id="openCuisineList">
-    {% for cuisine in list_of_cuisines %}
-    <a class="dropdown-item" href="/{{ cuisine.id }}/#select-a-cuisine">{{ cuisine.name|title }}</a>
-    {% endfor %}
-    </div>
-
-</div>
-</div>
-</div>
+            <div class="dropdown">
+                <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="collapse" href="#openCuisineList" aria-haspopup="true" aria-expanded="false" aria-controls="openCuisineList">
+                Select a Cuisine
+                </button>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="collapse" id="openCuisineList">
+                        {% for cuisine in list_of_cuisines %}
+                            <a class="dropdown-item" href="/{{ cuisine.id }}/#select-a-cuisine">{{ cuisine.name|title }}</a>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
  
 <!-- End Dropdown for Cuisine Selection -->
-
-
-
-
-            </div>
         </div>
     </div>
+</div>
     <!-- // end .section -->
 
 <!-- Show a preview of the recipe -->    
 {% if recipe.results.0.id > 0 %}
-        <div class="section-title">
-            <p><h5><strong>{{ selected_cuisine.name|title }}</strong> Recipe</h5></p>
+<div class="section-title">
+    <p>
+        <h5><strong>{{ selected_cuisine.name|title }}</strong> Recipe</h5>
+    </p>
     <div class="media-body" id="chosen-recipe">
     <!-- <p>Recipe ID -> {{ recipe.results.0.id }}</p> -->
-	<h3>{{ recipe.results.0.title }}</h3>
-	<p><img src="{{ recipe.results.0.image }}"></p>
-</div>
+        <h3>{{ recipe.results.0.title }}</h3>
+        <img class="img-fluid mb-2" src="{{ recipe.results.0.image }}">
+    </div>
 
-    <a href="/recipe/{{ recipe.results.0.id }}" class="btn btn-primary btn-lg" role="button">
-        Get Recipe Details
-    </a>
-    <p>
-    </p>
-    <p> OR </p>
-    <p><button class="btn btn-primary btn-sm another-recipe" role="button" value="Refresh Page" onClick="window.location.reload();">
-        Get Another Recipe</button>
-    </a></p>
+    <a href="/recipe/{{ recipe.results.0.id }}" class="btn btn-primary btn-lg" role="button">Get Recipe Details</a>
+    <br>
+    <br>
+    <p>OR</p>
+    <button class="btn btn-primary btn-lg another-recipe" role="button" value="Refresh Page" onClick="window.location.reload();">Get Another Recipe</button>
 </div>
 {% endif %}
 
@@ -82,7 +74,6 @@
 <!-- How it works -->
 
     <div class="section light-bg">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-8 d-flex align-items-center">
@@ -113,11 +104,8 @@
                 <div class="col-md-4">
                     <img src="{% static 'images/iphonex.png' %}" alt="iphone" class="img-fluid">
                 </div>
-
             </div>
-
         </div>
-
     </div>
     <!-- // end .section -->
 
@@ -130,8 +118,9 @@
     <div class="section bg-gradient">
         <div class="container">
             <div class="call-to-action">
-
-                <div class="box-icon"><span class="ti-user gradient-fill ti-3x"></span></div>
+                <div class="box-icon">
+                    <span class="ti-user gradient-fill ti-3x"></span>
+                </div>
                 <h2>Save recipes and more</h2>
                 <p class="tagline">It's free to become a member.</p>
                 <div class="my-4">
@@ -140,7 +129,6 @@
                 <p class="text-primary"><small><i>*$20/month subscription fee after 10 minute free trial.</i></small></p>
             </div>
         </div>
-
     </div>
 
     <!-- // end .section -->

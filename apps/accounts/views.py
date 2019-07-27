@@ -34,7 +34,7 @@ def log_in(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('view_profile', user.username)
+            return redirect(request.GET['next'])
     else:
         form = AuthenticationForm()
 
@@ -83,18 +83,6 @@ def edit_profile(request):
     return render(request, 'accounts/edit_profile.html', context)
 
 
-#def account_view(request):
-#    context =  {}
-#    return render(request, 'accounts/user_account.html', context)
-
-
-    
-#def view_all_users(request):
-#    all_users = User.objects.all()
-#    context = {
-#        'users': all_users,
-#    }
-#    return render(request, 'accounts/view_all_users.html', context)
 
 
 
