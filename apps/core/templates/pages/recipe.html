@@ -29,20 +29,18 @@
 
 <div class="container">
 
-<div class="call-to-action">
-<img class="img-fluid mb-2" src="{{ recipe.image }}">
-<!--<h5><span class="ti-heart gradient-fill"></span>Save Recipe</h5>-->
-<!--Authenticate user and let them save recipe-->
-    {% if user.is_authenticated %}
-        <div class="links">
-            <a href="/save-recipe/{{ recipe.id }}/" class="btn btn-link">
-                <i class="octicon octicon-heart"></i>
-                Save me!
-            </a>
-        </div>
-    {% endif %}
-
-</div>
+    <div class="call-to-action">
+        <img class="img-fluid mb-2" src="{{ recipe.image }}">
+        <!--If user authenticated enable save recipe-->
+            {% if user.is_authenticated %}
+                <div class="links">
+                    <a href="/save-recipe/{{ recipe.id }}/" class="btn btn-lg btn-primary my-3 my-sm-0 ml-lg-3">
+                        <span class="ti-heart">   </span>
+                        Save Recipe
+                    </a>
+                </div>
+            {% endif %}
+    </div>
 
 <h2>Ingredients:</h2>
 
