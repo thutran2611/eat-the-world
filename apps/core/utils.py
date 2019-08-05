@@ -63,7 +63,7 @@ def get_recipe_details(id):
     
     return response
     
-#response header handling
+#check response headers for nearing api limit
 def process_response_headers(header_dict):
     for header_key, header_value in header_dict.items():
         if 'X-RateLimit' in header_key:
@@ -71,19 +71,18 @@ def process_response_headers(header_dict):
         
     print('api_limit_stats ->', api_limit_stats)
     
-    if int(api_limit_stats['X-RateLimit-requests-Remaining']) < 10 or int(api_limit_stats['X-RateLimit-results-Remaining']) < 100:
+    if int(api_limit_stats['X-RateLimit-requests-Remaining']) < 4900 or int(api_limit_stats['X-RateLimit-results-Remaining']) < 19900:
         msg = "You are getting close to exceeding one or more Spoonacular API limits. The remaining capacity before getting charged is : \n" + "X-RateLimit-requests-Remaining : " + api_limit_stats['X-RateLimit-requests-Remaining'] + "\n" + "X-RateLimit-results-Remaining : " + api_limit_stats['X-RateLimit-results-Remaining'] + "\n" + "IT STARTS COSTING $$$ IF WE EXCEED LIMITS, INSTEAD OF JUST THROWING AN ERROR!!!"
         print ('API getting close to limits!')
         send_email(msg)
     
-###### send email
+#send email
 def send_email(message):
 
     #send email using mailgun API
     mailgun_api_key = os.environ["MAILGUN_API_KEY"]
     
     print(mailgun_api_key)
-    print(type(mailgun_api_key))
 
     r = requests.post(
         "https://api.mailgun.net/v3/sandboxb364b46bb57a4f7bb415814c33300234.mailgun.org/messages",
@@ -95,6 +94,9 @@ def send_email(message):
     )
     
     print('send email mailgun post status_code =>',r.status_code)
+    
+    #for testing purposes
+    return r.status_code
 
 
 

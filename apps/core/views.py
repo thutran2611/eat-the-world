@@ -7,13 +7,6 @@ from apps.accounts.models import User
 from django.contrib.auth import authenticate
 
 class CuisineForm(forms.Form):
-#    class Meta:
-#        model = Cuisine
-#        fields = ['name']
-#        widgets = {
-#            #can't figure out how to query db objects to populate drop-down
-#            'name': forms.Select()
-#        }
     cuisine = forms.ModelChoiceField(queryset=Cuisine.objects.order_by('name'))
 
 #Views based on the template Reuben and Kyle are working on
@@ -82,7 +75,6 @@ def test(request):
     #Get list of cuisines from database since no way to dynamically pull from spoonful API
     list_of_cuisines = CuisineForm()
     
-    # TODO figure out how request will be coming in for a recipe
     #Get 1 recipe if request includes a cuisine
     if 'cuisine' in request.GET:
         selected_cuisine_id = request.GET['cuisine']
@@ -120,7 +112,7 @@ def test(request):
     return render(request, 'pages/test.html', context)
 
 
-
+# Save recipe to the user's profile
 def save_recipe(request,recipe_id):
     if SavedRecipe.objects.filter(user=request.user, recipe_id=recipe_id).exists():
         return redirect(request.META.get('HTTP_REFERER', '/'))
