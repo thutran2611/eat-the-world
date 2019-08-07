@@ -2,8 +2,20 @@
 
 {% block title %}Forbidden (403){% endblock %}
 
-{% block content %}
-<h1>Forbidden (403)</h1>
+{% block header %}
+<header class="bg-gradient" id="home">
+    <div class="container mt-5">
+    </div>
+</header>
+{% endblock header %}
 
-<p>CSRF verification failed. Request aborted.</p>
+{% block content %}
+<div>
+    <div class="section-title">
+        <h1>Forbidden (403)</h1>
+
+        <p>CSRF verification failed. Request aborted.</p>
+        <a href="#" class="btn btn-secondary" onclick="history.go(-1);return false;">&larr; Back</a>
+    </div>
+</div>
 {% endblock content %}

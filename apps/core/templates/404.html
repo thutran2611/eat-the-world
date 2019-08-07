@@ -2,11 +2,19 @@
 
 {% block title %}Page not found{% endblock %}
 
+{% block header %}
+<header class="bg-gradient" id="home">
+    <div class="container mt-5">
+    </div>
+</header>
+{% endblock header %}
+
 {% block content %}
-<h1>Page not found</h1>
-
-<p>This is not the page you were looking for.</p>
-
-<a href="#" class="btn btn-secondary" onclick="history.go(-1);return false;">&larr; Back</a>
-
+<div>
+    <div class="section-title">
+        <h1>Page not found</h1>
+        <p>This is not the page you were looking for.</p>
+        <a href="#" class="btn btn-secondary" onclick="history.go(-1);return false;">&larr; Back</a>
+    </div>
+</div>
 {% endblock content %}

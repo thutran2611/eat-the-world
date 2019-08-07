@@ -1,11 +1,14 @@
 {% extends "accounts_base.html" %}
 {% load bootstrap4 %}
 
-{% block content %}
+{% block header %}
     <header class="bg-gradient" id="home">
         <div class="container mt-5">
         </div>
     </header>
+{% endblock header %}
+
+{% block content %}
 
         <div class="container">
             <div class="section-title">
@@ -28,10 +31,6 @@
 {% include "accounts/form_snippet.html" with form_title="Log In" %}
 
 {% endblock form %}
-
-
-
-
 
 </article>
 </div> <!-- card.// -->

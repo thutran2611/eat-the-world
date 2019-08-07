@@ -58,28 +58,28 @@
         </div>
     </div>
 
-{% block main %}
-
-
-<div class="container pt-2">
+    {% block header %}
+    
+    {% endblock header %}
+    
+    <div class="container pt-2">
 
       {# Enable Django's "messages" system #}
       {% if messages %}
           {% for message in messages %}
-              <div class="alert show-zindex alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}
+              <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
               </div>
           {% endfor %}
       {% endif %}
-
+    </div>
+    
       {% block content %}
-        <p>Use this as a way to quick start any new project.</p>
+      
       {% endblock content %}
 
-    
-{% endblock main %}
 
 <!-- FOOTER -->
     <div class="light-bg py-5" id="contact">

@@ -7,45 +7,42 @@
             {% block title %}
      Eat The World - Recipes & More
         {% endblock title %}
-
-{% block content %}
-
-
+        
+{% block header %}
     <header class="bg-gradient" id="home">
         <div class="container mt-5">
             <h1>Recipes for You</h1>
             <p class="tagline"><strong>Eat The World</strong> helps you find a great recipe for any cuisine.</p>
             <br>
-                        <br>
+            <br>
         </div>
-
     </header>
+{% endblock header %}
 
-<div class="section" id='select-a-cuisine'>
+{% block content %}
+
+    <div class="section" id='select-a-cuisine'>
         <div class="container">
             <div class="section-title">
 
 <!-- Dropdown for Cuisine Selection -->
-<div class="dropdown">
-  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="collapse" href="#openCuisineList" aria-haspopup="true" aria-expanded="false" aria-controls="openCuisineList">
-    Select a Cuisine
-  </button>
-  <div class="row mt-3">
-  <div class="col">
-    <div class="collapse" id="openCuisineList">
-    {% for cuisine in list_of_cuisines %}
-    <a class="dropdown-item" href="/{{ cuisine.id }}/#select-a-cuisine">{{ cuisine.name|title }}</a>
-    {% endfor %}
-    </div>
+                <div class="dropdown">
+                  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="collapse" href="#openCuisineList" aria-haspopup="true" aria-expanded="false" aria-controls="openCuisineList">
+                    Select a Cuisine
+                  </button>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="collapse" id="openCuisineList">
+                            {% for cuisine in list_of_cuisines %}
+                            <a class="dropdown-item" href="/{{ cuisine.id }}/#select-a-cuisine">{{ cuisine.name|title }}</a>
+                            {% endfor %}
+                            </div>
 
-</div>
-</div>
-</div>
+                        </div>
+                    </div>
+                </div>
  
 <!-- End Dropdown for Cuisine Selection -->
-
-
-
 
             </div>
         </div>
@@ -54,35 +51,28 @@
 
 <!-- Show a preview of the recipe -->    
 {% if recipe.results.0.id > 0 %}
-        <div class="section-title">
+    <div class="section-title">
             <p><h5><strong>{{ selected_cuisine.name|title }}</strong> Recipe</h5></p>
-    <div class="media-body" id="chosen-recipe">
+        <div class="media-body" id="chosen-recipe">
     <!-- <p>Recipe ID -> {{ recipe.results.0.id }}</p> -->
-	<h3>{{ recipe.results.0.title }}</h3>
-	<p><img src="{{ recipe.results.0.image }}"></p>
-</div>
+	        <h3>{{ recipe.results.0.title }}</h3>
+	        <p><img src="{{ recipe.results.0.image }}"></p>
+        </div>
 
-    <a href="/recipe/{{ recipe.results.0.id }}" class="btn btn-primary btn-lg" role="button">
-        Get Recipe Details
-    </a>
-    <p>
-    </p>
-    <p> OR </p>
-    <p><button class="btn btn-primary btn-sm another-recipe" role="button" value="Refresh Page" onClick="window.location.reload();">
-        Get Another Recipe</button>
-    </a></p>
-</div>
+        <a href="/recipe/{{ recipe.results.0.id }}" class="btn btn-primary btn-lg" role="button">Get Recipe Details</a>
+        <p></p>
+        <p> OR </p>
+        <p><button class="btn btn-primary btn-sm another-recipe" role="button" value="Refresh Page" onClick="window.location.reload();">Get Another Recipe</button></a></p>
+    </div>
 {% endif %}
 
 <!-- End Show a preview of the recipe -->    
-
 
 {% if not recipe.results.0.id > 0 %}
 
 <!-- How it works -->
 
     <div class="section light-bg">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-8 d-flex align-items-center">

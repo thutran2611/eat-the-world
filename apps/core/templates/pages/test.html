@@ -5,8 +5,7 @@
     ETW Test Page
 {% endblock title %}
 
-
-{% block content %}
+{% block header %}
     <header class="bg-gradient" id="home">
         <div class="container mt-5">
             <h1>Recipes for You</h1>
@@ -14,8 +13,11 @@
             <br />
             <br />
         </div>
-
     </header>
+{% endblock header %}
+
+
+{% block content %}
 
 <!-- example of pulling specific data from api output -->	
     {% for recipe in random_recipe.results %}

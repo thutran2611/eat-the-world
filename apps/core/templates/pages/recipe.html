@@ -8,10 +8,7 @@
       {{ recipe.title|title }} | Eat The World
         {% endblock title %}
 
-
-{% block content %}
-
-
+{% block header %}
 
     <header class="bg-gradient" id="home">
         <div class="container mt-5">
@@ -20,11 +17,17 @@
             <br>
         </div>
     </header>
-<nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-2">Preparation: {{ recipe.preparationMinutes }} minutes</span>
-    <span class="navbar-brand mb-2">Cooking: {{ recipe.cookingMinutes }} minutes</span>
-        <span class="navbar-brand mb-2">Servings: {{ recipe.servings }}</span>
-</nav>
+
+{% endblock header %}
+
+{% block content %}
+
+
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-2">Preparation: {{ recipe.preparationMinutes }} minutes</span>
+        <span class="navbar-brand mb-2">Cooking: {{ recipe.cookingMinutes }} minutes</span>
+            <span class="navbar-brand mb-2">Servings: {{ recipe.servings }}</span>
+    </nav>
 
 
 <div class="container">

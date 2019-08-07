@@ -1,17 +1,18 @@
 {% extends "accounts_base.html" %}
 
-
-{% block content %}
-
-
+{% block header %}
     <header class="bg-gradient" id="home">
         <div class="container">
             <h1>Welcome, {{ user.username|title }}</h1>
-<a class="btn btn-outline-light my-3 my-sm-0 ml-lg-3" href="/" >Find A Recipe</a>
-<br>
+            <a class="btn btn-outline-light my-3 my-sm-0 ml-lg-3" href="/" >Find A Recipe</a>
+            <br>
             <br>
         </div>
     </header>
+{% endblock header %}
+
+{% block content %}
+
      <div class="section light-bg" id="features">
         <div class="container">
             <div class="section-title">
