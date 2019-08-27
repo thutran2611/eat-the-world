@@ -1,10 +1,11 @@
+# Set environment variables in Terminal session before running tests.py
+# Required environment variables for this application are 1) SPOONACULAR_API_KEY and 2) MAILGUN_API_KEY
+# To run test make sure in pipenv shell and in directory with manage.py and run `python manage.py test'
+
 from django.test import TestCase
 from apps.accounts.models import User
 from .models import Cuisine, SavedRecipe
 from .utils import send_email
-
-# Set environment variables in Terminal session before running tests.py
-# Required environment variables for this application are 1) SPOONACULAR_API_KEY and 2) MAILGUN_API_KEY
 
 # Create your tests here.
 class test_home_page(TestCase):
