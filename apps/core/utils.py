@@ -37,11 +37,10 @@ def get_recipe_by_cuisine(cuisine):
     query_params = {
             'cuisine': cuisine,
             'type': 'main course',
-            #2 is by "relevance" which I think behaves as ranking it by a score
-            'ranking': 2,
             'instructionsRequired': 'true',
             'limitLicense': 'false',
-            #to avoid always bringing back the same #1 recipe, randomly select from top 20 ranked recipes returned
+            #to avoid always bringing back the same #1 recipe, 
+            #randomly select from top 20 ranked recipes returned
             'offset': random.randint(1,21),
             'number': 1,
     }
